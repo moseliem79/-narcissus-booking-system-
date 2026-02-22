@@ -1,0 +1,329 @@
+/* ===== CSS Variables (Narcissus Brand Colors) ===== */
+:root {
+    --gold-primary: #B49A67;      /* Sophisticated muted gold */
+    --teal-deep: #1F3B4C;          /* Deep teal/navy for accents */
+    --cream-bg: #F9F1E7;            /* Warm cream for backgrounds */
+    --white-pure: #FFFFFF;           /* Pure white for cards */
+    --gray-dark: #2C2C2C;            /* Soft black for text */
+    --gray-light: #E5E5E5;           /* Light gray for borders */
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    --shadow-elegant: 0 20px 40px rgba(0, 0, 0, 0.08); /* Deeper shadow */
+    --border-radius: 16px;            /* Soft rounded corners */
+    --transition: all 0.3s ease;      /* Smooth transitions */
+}
+
+/* ===== Reset & Base Styles ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* Elegant, widely available */
+    background-color: var(--cream-bg);
+    color: var(--gray-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem; /* Spacing on small screens */
+}
+
+/* ===== Main Container ===== */
+.booking-container {
+    width: 100%;
+    max-width: 1200px; /* Prevents excessive stretching on huge screens */
+    margin: 0 auto;
+}
+
+/* ===== Booking Card ===== */
+.booking-card {
+    background-color: var(--white-pure);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-elegant);
+    padding: 2rem 1.5rem; /* Comfortable padding for mobile */
+    transition: var(--transition);
+}
+
+/* Slight lift on hover (desktop only) */
+@media (min-width: 1024px) {
+    .booking-card:hover {
+        box-shadow: 0 30px 50px rgba(0, 0, 0, 0.12);
+        transform: translateY(-5px);
+    }
+}
+
+/* ===== Brand Header ===== */
+.brand-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.hotel-name {
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: var(--teal-deep);
+    margin-bottom: 0.25rem;
+    line-height: 1.2;
+}
+
+.hotel-tagline {
+    font-size: 0.95rem;
+    color: var(--gold-primary);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+}
+
+.divider {
+    width: 80px;
+    height: 2px;
+    background-color: var(--gold-primary);
+    margin: 1.5rem auto;
+    opacity: 0.6;
+}
+
+.form-title {
+    font-size: 1.75rem;
+    font-weight: 300;
+    color: var(--teal-deep);
+    margin-bottom: 0.5rem;
+}
+
+.form-subtitle {
+    font-size: 1rem;
+    color: var(--gray-dark);
+    opacity: 0.8;
+    margin-bottom: 1rem;
+}
+
+/* ===== Form Elements ===== */
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Spacing between form groups */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--teal-deep);
+    letter-spacing: 0.3px;
+}
+
+.optional {
+    font-weight: 300;
+    color: var(--gold-primary);
+    font-size: 0.85rem;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--gray-light);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--gray-dark);
+    background-color: var(--white-pure);
+    transition: var(--transition);
+}
+
+/* Focus state */
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--gold-primary);
+    box-shadow: 0 0 0 3px rgba(180, 154, 103, 0.15);
+}
+
+/* Placeholder styling */
+::placeholder {
+    color: #aaa;
+    font-weight: 300;
+    font-size: 0.9rem;
+}
+
+/* Input hints (small text below fields) */
+.input-hint {
+    font-size: 0.8rem;
+    color: #777;
+    margin-top: 0.25rem;
+}
+
+/* Disable past dates indicator (will be handled by JS, but style readonly) */
+input[type="date"]:invalid {
+    color: #aaa;
+}
+
+/* ===== Select Dropdown Arrow Customization ===== */
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231F3B4C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: left 1rem center; /* RTL: left becomes right automatically? In RTL, background-position should be right. But dir="rtl" may reverse. Safer: use 'left' for LTR but since we have dir="rtl", the browser swaps left/right? Actually, background-position is not affected by dir. So for RTL we want the arrow on the left side. We'll set background-position: left 1rem center; which in RTL context visually places it on the right? Because RTL doesn't flip background-position. Let's test: if dir=rtl, the element's content flows RTL but background-position remains absolute. For a dropdown arrow, we usually want it on the left in RTL (since text is right-aligned). But typical RTL forms have arrow on left. So we should set background-position: left 1rem center;. This will place arrow on the left side visually. In our RTL layout, that works: arrow left, text right-aligned. */
+    background-size: 18px;
+    padding-left: 2.5rem; /* Make room for arrow on left */
+}
+
+/* For RTL, we need to adjust padding so text doesn't overlap arrow. We already set padding-left. Good. */
+
+/* ===== Textarea ===== */
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* ===== Submit Button ===== */
+.submit-group {
+    margin-top: 1rem;
+}
+
+.submit-btn {
+    background-color: var(--gold-primary);
+    color: var(--white-pure);
+    border: none;
+    border-radius: 50px; /* Pill shape for elegance */
+    padding: 1.2rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(180, 154, 103, 0.3);
+}
+
+.submit-btn:hover {
+    background-color: #a88957; /* Slightly darker gold */
+    box-shadow: 0 6px 15px rgba(180, 154, 103, 0.4);
+    transform: translateY(-2px);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(180, 154, 103, 0.3);
+}
+
+.submit-btn:focus-visible {
+    outline: 2px solid var(--teal-deep);
+    outline-offset: 2px;
+}
+
+/* Loading spinner */
+.btn-loader {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--white-pure);
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Hide button text when loading */
+.submit-btn.loading .btn-text {
+    opacity: 0.7;
+}
+
+/* ===== Form Footer ===== */
+.form-footer {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #777;
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--gray-light);
+    padding-top: 1.5rem;
+}
+
+/* ===== Validation Feedback (Optional) ===== */
+input:invalid:not(:placeholder-shown) {
+    border-color: #e74c3c; /* Red for error */
+}
+
+input:invalid:not(:placeholder-shown) + .input-hint {
+    color: #e74c3c;
+}
+
+/* But we don't want to show error before user interacts; we'll rely on JS for better UX. This is just a fallback. */
+
+/* ===== Responsive Enhancements ===== */
+
+/* Tablet (768px and up) */
+@media (min-width: 768px) {
+    .booking-card {
+        padding: 3rem 2.5rem;
+    }
+
+    .hotel-name {
+        font-size: 2.5rem;
+    }
+
+    .hotel-tagline {
+        font-size: 1rem;
+    }
+
+    .form-title {
+        font-size: 2rem;
+    }
+
+    /* Possibly two columns for certain fields? Not needed, keep single column for elegance. */
+    .booking-form {
+        gap: 2rem;
+    }
+
+    input, select, textarea {
+        padding: 1rem 1.2rem;
+    }
+
+    .submit-btn {
+        width: auto; /* Let button size to content on larger screens */
+        min-width: 250px;
+        margin: 0 auto; /* Center it */
+        padding: 1.2rem 3rem;
+    }
+}
+
+/* Desktop (1024px and up) */
+@media (min-width: 1024px) {
+    .booking-card {
+        padding: 4rem 4rem;
+    }
+
+    .hotel-name {
+        font-size: 3rem;
+    }
+
+    .form-title {
+        font-size: 2.2rem;
+    }
+
+    .booking-form {
+        gap: 2.2rem;
+    }
+}
+
+/* Very large screens (1600px+) */
+@media (min-width: 1600px) {
+    .booking-card {
+        padding: 5rem 6rem;
+    }
+}
