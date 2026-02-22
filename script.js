@@ -13,7 +13,7 @@
     const phoneInput = document.getElementById('phone');
 
     // ===== Configuration =====
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzfu4C8EpAdgE_WZSVtk_rj0Vy6aor_cMX6GgZCwdQLmd18teY6mKDPFjpthxPSOArLhA/exec'; // Replace with your deployed URL
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzrvD8ZzS7OMqD7mPK7xEsAUNP7rPulUJn4aolrcUhcU3s2biRl0Nb1EnYK_fOUnmg3cA/exec'; // Replace with your deployed URL
 
     // ===== Helper Functions =====
 
@@ -177,4 +177,5 @@
 
 
 })();
+
 
